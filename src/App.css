@@ -1,0 +1,70 @@
+.activeTopic {
+  color: red;
+  transform: scale(1.04);
+}
+
+#dashboard {
+  display: grid;
+  grid-template-areas: "topics main";
+  grid-template-columns: 20% 80%;
+  width: 1080px;
+}
+
+#topics-div {
+  grid-area: topics;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+#main-div {
+  grid-area: main;
+}
+
+#search-sortbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#results {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#leftside {
+  display: flex;
+  flex-direction: column;
+}
+
+#rightside {
+  display: flex;
+  flex-direction: column;
+}
+
+#addres-modal {
+  position: fixed;
+  z-index: 10;
+  flex-grow: 1;
+  pointer-events: none;
+  pointer-events: all;
+  flex: 1;
+  background: white;
+  border-radius: 10px;
+}
+
+#overlay {
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+@media (max-width: 840px) {
+  #results {
+    flex-wrap: wrap;
+  }
+}

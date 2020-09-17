@@ -3,4 +3,8 @@
   "routes": {
     "/**": "index.html"
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3f52c629e7b1e90609b4cacb5bbae025cb2d7131

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useMutation } from "@apollo/client";
 import { ADD_VOTE } from "../queries/queries";
@@ -35,6 +35,12 @@ const Description = styled.div`
 const Votes = styled.div`
   margin-top: 5px;
   font-size: 14px;
+  cursor: pointer;
+
+  :hover {
+    transform: scale(1.04);
+    font-weight: 700;
+  }
 `;
 
 const CardBoxFooter = styled.div`
@@ -90,6 +96,7 @@ type Props = {
 
 export const Cards = ({ data, addVote }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
+  const [voteNumber, setVoteNumber] = useState<number>(0);
 
   const [addResourceMutation] = useMutation(ADD_VOTE, {
     onCompleted: () => {
@@ -100,14 +107,20 @@ export const Cards = ({ data, addVote }: Props) => {
   });
 
   function vote(id: number) {
-    console.log("id", id);
-    addResourceMutation({
-      variables: {
-        userIp: "123.123",
-        resourceId: id,
-      },
-    });
+    if (data.vote.length === voteNumber) {
+      addResourceMutation({
+        variables: {
+          userIp: "123.123",
+          resourceId: id,
+        },
+      });
+      setVoteNumber((prevState) => prevState + 1);
+    }
   }
+
+  useEffect(() => {
+    setVoteNumber(data.vote.length);
+  }, [data]);
 
   return (
     <CardBox>
@@ -128,7 +141,7 @@ export const Cards = ({ data, addVote }: Props) => {
         ) : (
           <>
             <Votes onClick={() => vote(data.id)}>
-              {`⇧ ${data.vote.length} votes`}
+              {`⇧ ${voteNumber} votes`}
             </Votes>
             <DetailsButton onClick={() => setOpen(true)}>
               More details

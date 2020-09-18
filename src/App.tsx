@@ -9,9 +9,9 @@ import { Searchbar } from "./components/Searchbar";
 import { SortBy } from "./components/SortBy";
 import { Topics } from "./components/Topics";
 import { TopMenu } from "./components/TopMenu";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 
-import { ALL_RESOURCES, ALL_CATEGORY } from "./queries/queries";
+import { ALL_RESOURCES, ALL_CATEGORY, ADD_VOTE } from "./queries/queries";
 import { Loading } from "./components/Loading";
 
 function App() {
@@ -24,13 +24,26 @@ function App() {
 
   const [allData, setAllData] = useState<CardType[]>();
 
+  const [addResourceMutation] = useMutation(ADD_VOTE, {
+    onCompleted: () => {
+      console.log("succes");
+    },
+    onError: (error: any) => console.log("error", error?.networkError?.result),
+    errorPolicy: "all",
+  });
+
   function handleResult(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     setSearchResults(value);
   }
 
   function addVote(id: number) {
-    console.log(id);
+    addResourceMutation({
+      variables: {
+        userIp: "123.123",
+        resourceId: id,
+      },
+    });
   }
 
   useEffect(() => {

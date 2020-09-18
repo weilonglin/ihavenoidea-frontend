@@ -1,4 +1,14 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Resourcey McResourceyson
+
+## Goal of the app
+The goal of this app was to develop an app which can help students prepare for their Coding-life. We as a group decided to make an app where you can find and add a resource related to coding. We used React, TypeScript and GraphQL to make this app. 
+
+### Features
+You can perfrom a live-search using the searchbar, you can navigate through the different topics, you can sort all the different resources and finally you can add a new resource.
+
+---
+
+This app was created using a standard Create-React-App script, so the following text will apply to this project as well. 
 
 ## Available Scripts
 
